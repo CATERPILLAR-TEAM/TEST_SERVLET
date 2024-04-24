@@ -24,11 +24,15 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 
     @Override
     public boolean insert(MemberDto dto) throws Exception {
-        pstmt = conn.prepareStatement("insert into member values(?,?,?,?)");
-        pstmt.setString(1, dto.getUsername());
-        pstmt.setString(2, dto.getPassword());
-        pstmt.setString(3, dto.getEmail());
-        pstmt.setInt(4, dto.getPhone());
+        pstmt = conn.prepareStatement("insert into member values(null,?,?,?,?,?,?,?,?)");
+        pstmt.setString(1, dto.getRealname());
+        pstmt.setString(2, dto.getBirth());
+        pstmt.setInt(3, dto.isGender());
+        pstmt.setString(4, dto.getPhone());
+        pstmt.setString(5, dto.getEmail());
+        pstmt.setString(6, dto.getUsername());
+        pstmt.setString(7, dto.getPassword());
+        pstmt.setString(8, dto.getConfrimPassword());
         int result = pstmt.executeUpdate();
         freeConnection(pstmt);
         return result > 0;
@@ -47,7 +51,7 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
                 dto.setUsername(rs.getString("username"));
                 dto.setPassword(rs.getString("password"));
                 dto.setEmail(rs.getString("email"));
-                dto.setPhone(rs.getInt("phone"));
+                dto.setPhone(rs.getString("phone"));
                 list.add(dto); // 리스트에 회원정보 추가
             }
         }
@@ -69,7 +73,7 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
                 dto.setUsername(username);
                 dto.setPassword(rs.getString("password"));
                 dto.setEmail(rs.getString("email"));
-                dto.setPhone(rs.getInt("phone"));
+                dto.setPhone(rs.getString("phone"));
             }
         }
         freeConnection(pstmt, rs);
