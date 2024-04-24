@@ -3,7 +3,7 @@ package com.example.app.domain.common.dto;
 public class MemberDto {
 	private String realname;
 	private String birth;
-	private int gender;
+	private boolean gender;
 	private String phone;
 	private String email;
 	private String username;
@@ -14,7 +14,7 @@ public class MemberDto {
 		super();
 	}
 
-	public MemberDto(String realname, String birth, int gender, String phone, String email, String username,
+	public MemberDto(String realname, String birth, boolean gender, String phone, String email, String username,
 			String password, String confrimPassword) {
 		super();
 		this.realname = realname;
@@ -43,11 +43,11 @@ public class MemberDto {
 		this.birth = birth;
 	}
 
-	public int isGender() {
+	public boolean isGender() {
 		return gender;
 	}
 
-	public void setGender(int gender) {
+	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
 
