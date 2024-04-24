@@ -27,7 +27,7 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
         pstmt = conn.prepareStatement("insert into member values(null,?,?,?,?,?,?,?,?)");
         pstmt.setString(1, dto.getRealname());
         pstmt.setString(2, dto.getBirth());
-        pstmt.setInt(3, dto.isGender());
+        pstmt.setBoolean(3, dto.isGender());
         pstmt.setString(4, dto.getPhone());
         pstmt.setString(5, dto.getEmail());
         pstmt.setString(6, dto.getUsername());
