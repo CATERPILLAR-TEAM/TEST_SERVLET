@@ -67,4 +67,10 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
+	@Override
+	public boolean register(MemberDto memberDto) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

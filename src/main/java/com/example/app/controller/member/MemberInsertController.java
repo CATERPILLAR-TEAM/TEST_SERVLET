@@ -37,30 +37,35 @@ public class MemberInsertController implements SubController {
 				return;
 			}
 
-			// 1 파라미터
-			int id = 0;
-			String realname = request.getParameter("realname");
-			String birth = request.getParameter("birth");
-			boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
-			String phone = request.getParameter("phone");
-			String email = request.getParameter("email");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			String confrimPassword = request.getParameter("confrimPassword");
+			if (method.contains("POST")) {
 
-			// 2 유효성
-			if (!isValid(realname, birth, gender, phone, email, username, password, confrimPassword)) {
+				// 1 파라미터
+				int id = 0;
+				String realname = request.getParameter("realname");
+				String birth = request.getParameter("birth");
+				boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String username = request.getParameter("username");
+				String password = request.getParameter("password");
+				String confrimPassword = request.getParameter("confrimPassword");
 
-			} else {
+				// 2 유효성
+				if (!isValid(realname, birth, gender, phone, email, username, password, confrimPassword)) {
+
+				} else {
+
+				}
+
+				// 3 서비스
+				MemberDto memberDto = new MemberDto(id, realname, birth, gender, phone, email, username, password,
+						confrimPassword);
+				memberService.register(memberDto);
+
+				// 4 뷰
+				response.sendRedirect(request.getContextPath() + "/admin/member/insert");
 
 			}
-
-			// 3 서비스
-			MemberDto memberDto = new MemberDto(id, realname, birth, gender, phone, email, username, password,
-					confrimPassword);
-
-			// 4 뷰
-			response.sendRedirect(request.getContextPath() + "/admin/member/insert");
 
 		} catch (Exception e) {
 			e.printStackTrace();

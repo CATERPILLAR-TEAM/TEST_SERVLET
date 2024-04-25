@@ -43,19 +43,21 @@ public class MemberDeleteController implements SubController {
 			}
 
 			// POST 요청(etc Method)
-			// 1
-			int id = Integer.parseInt(request.getParameter("id"));
-			// 2 validation
-			if (!isValid()) {
+			if (method.contains("POST")) {
+				// 1
+				int id = Integer.parseInt(request.getParameter("id"));
+				// 2 validation
+				if (!isValid()) {
 
-				return;
+					return;
+				}
+
+				// 3 service
+				memberService.deleteMember(id);
+
+				// 4 view
+
 			}
-
-			// 3 service
-			memberService.deleteMember(id);
-
-			// 4 view
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 예외페이지로 넘기기..or new ServletException("message") 처ㅣ
@@ -65,9 +67,7 @@ public class MemberDeleteController implements SubController {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-
 		}
-
 	}
 
 	private boolean isValid() {
