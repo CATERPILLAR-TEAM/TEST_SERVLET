@@ -11,6 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.app.controller.member.MemberDeleteController;
+import com.example.app.controller.member.MemberLoginController;
+import com.example.app.controller.member.MemberLogoutController;
+import com.example.app.controller.member.MemberRegisterController;
+import com.example.app.controller.member.MemberSelectAllController;
+import com.example.app.controller.member.MemberSelectController;
+import com.example.app.controller.member.MemberUpdateController;
+
 
 public class FrontController extends HttpServlet{
 	
@@ -28,9 +36,13 @@ public class FrontController extends HttpServlet{
 		map.put(path+"/", new HomeController());
 		
 		//user
-		
-		
-		//lend
+		map.put(path+"/member/delete", new MemberDeleteController());
+		map.put(path+"/member/register", new MemberRegisterController());
+		map.put(path+"/member/update", new MemberUpdateController());
+		map.put(path+"/member/select", new MemberSelectController());
+		map.put(path+"/member/selectAll", new MemberSelectAllController());
+		map.put(path+"/member/login", new MemberLoginController());
+		map.put(path+"/member/logout", new MemberLogoutController());
 		
 	}
 	
