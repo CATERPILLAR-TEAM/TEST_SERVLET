@@ -8,17 +8,27 @@ public class MemberServiceImpl implements MemberService {
 
 	private MemberDao dao;
 	private ConnectionPool connectionPool;
-	
-	private static MemberService instance ;
+
+	private static MemberService instance;
+
 	public static MemberService getInstance() throws Exception {
-		if(instance==null)
-			instance=new MemberServiceImpl();
+		if (instance == null)
+			instance = new MemberServiceImpl();
 		return instance;
 	}
-	
-	private MemberServiceImpl() throws Exception{
-		
+
+	private MemberServiceImpl() throws Exception {
+
 		dao = MemberDaoImpl.getInstance();
 		this.connectionPool = ConnectionPool.getInstance();
 	}
+
+	@Override
+	public boolean deleteMember(int id) throws Exception {
+		connectionPool.txStart();
+		dao.delete(id);
+		connectionPool.txCommit();
+		return true;
+	}
+
 }
