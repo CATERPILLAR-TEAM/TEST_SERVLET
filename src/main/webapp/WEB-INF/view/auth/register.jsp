@@ -17,6 +17,7 @@
 		이메일:<input type="email" name="email">
 		아이디:<input type="text" name="id"><br/>
 		비밀번호:<input type="password" name="password"><br/>
+		확인 비밀번호:<input type="password" name="confirmPassword"><br/>
 		<input type="submit" value="가입">
 	</form>
 
