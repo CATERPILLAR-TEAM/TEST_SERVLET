@@ -1,15 +1,19 @@
 package com.example.app.controller;
 
-import java.io.IOException;
+import java.io.IOException;	
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.example.app.controller.reserv.ReservAddController;
+import com.example.app.controller.reserv.ReservDeleteController;
+import com.example.app.controller.reserv.ReservListController;
+import com.example.app.controller.reserv.ReservUpdateController;
 
 
 public class FrontController extends HttpServlet{
@@ -27,10 +31,11 @@ public class FrontController extends HttpServlet{
 		// '/'
 		map.put(path+"/", new HomeController());
 		
-		//user
-		
-		
-		//lend
+		//reservation
+		map.put(path+"/reserv/add", new ReservAddController());
+		map.put(path+"/reserv/list", new ReservListController());
+		map.put(path+"/reserv/update", new ReservUpdateController());
+		map.put(path+"/reserv/delete", new ReservDeleteController());
 		
 	}
 	
