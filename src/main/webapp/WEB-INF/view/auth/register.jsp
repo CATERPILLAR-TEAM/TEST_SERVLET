@@ -7,8 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
-		<input type="text"/>
+	<h2>회원가입</h2>
+	<form action="여긴 고쳐야 함!" method="POST">
+		실명:<input type="text" name="realname">
+		성별:<br/>
+		<input type="radio" name="gender" value="m" checked>남자
+		<input type="radio" name="gender" value="f">여자
+		연락처:<input type="text" name="phone">
+		이메일:<input type="email" name="email">
+		아이디:<input type="text" name="id"><br/>
+		비밀번호:<input type="password" name="password"><br/>
+		<input type="submit" value="가입">
 	</form>
+
 </body>
 </html>

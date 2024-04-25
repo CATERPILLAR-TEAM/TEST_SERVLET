@@ -31,4 +31,10 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 
+	@Override
+	public boolean login(String username, String password) {
+
+		return false;
+	}
+
 }

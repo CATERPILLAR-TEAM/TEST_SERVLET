@@ -1,6 +1,6 @@
 package com.example.app.controller.member;
 
-import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +11,11 @@ import com.example.app.domain.common.dto.MemberDto;
 import com.example.app.domain.common.service.MemberService;
 import com.example.app.domain.common.service.MemberServiceImpl;
 
-
 public class MemberInsertController implements SubController {
-	
+
 	private MemberService memberService;
 	private ConnectionPool connectionPool;
-	
+
 	public MemberInsertController() {
 
 		try {
@@ -26,12 +25,18 @@ public class MemberInsertController implements SubController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("MemberInsertController's execute() invoke ");
 		try {
-			
+
+			String method = request.getMethod();
+			if (method.contains("GET")) {
+				request.getRequestDispatcher("/WEB-INF/view/member/register.jsp").forward(request, response);
+				return;
+			}
+
 			// 1 파라미터
 			String realname = request.getParameter("realname");
 			String birth = request.getParameter("birth");
@@ -41,56 +46,62 @@ public class MemberInsertController implements SubController {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String confrimPassword = request.getParameter("confrimPassword");
-			
+
 			// 2 유효성
-			if(!isValid(realname,birth,gender,phone,email,username,password,confrimPassword)){
-				
+			if (!isValid(realname, birth, gender, phone, email, username, password, confrimPassword)) {
+
 			} else {
-				
+
 			}
-			
+
 			// 3 서비스
-			MemberDto memberDto = new MemberDto(realname,birth,gender,phone,email,username,password, confrimPassword);
-			
+			MemberDto memberDto = new MemberDto(realname, birth, gender, phone, email, username, password,
+					confrimPassword);
+
 			// 4 뷰
-			response.sendRedirect(request.getContextPath()+ "/admin/member/insert");
-			
-		} catch (IOException e) {
+			response.sendRedirect(request.getContextPath() + "/admin/member/insert");
+
+		} catch (Exception e) {
 			e.printStackTrace();
+
+			try {
+				connectionPool.txRollBack();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	private boolean isValid(String realname, String birth, boolean gender, String phone, String email, String username,
 			String password, String confrimPassword) {
-		if(password!=confrimPassword) {
+		if (password != confrimPassword) {
 			return false;
 		}
-		if(realname==null || realname.isEmpty()) {
+		if (realname == null || realname.isEmpty()) {
 			return false;
 		}
-		if(birth==null || birth.isEmpty()) {
+		if (birth == null || birth.isEmpty()) {
 			return false;
 		}
-		if(birth.isBlank() || birth.isEmpty()) {
+		if (birth.isBlank() || birth.isEmpty()) {
 			return false;
 		}
-		if(phone==null || phone.isEmpty()) {
+		if (phone == null || phone.isEmpty()) {
 			return false;
 		}
-		if(email==null || email.isEmpty()) {
+		if (email == null || email.isEmpty()) {
 			return false;
 		}
-		if(username==null || username.isEmpty()) {
+		if (username == null || username.isEmpty()) {
 			return false;
 		}
-		if(password==null || password.isEmpty()) {
+		if (password == null || password.isEmpty()) {
 			return false;
 		}
-		if(confrimPassword==null || confrimPassword.isEmpty()) {
+		if (confrimPassword == null || confrimPassword.isEmpty()) {
 			return false;
 		}
 		return true;
 	}
 
-	
 }
