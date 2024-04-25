@@ -40,56 +40,31 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 
 	@Override
 	public List<MemberDto> selectAll() throws SQLException {
-		pstmt = conn.prepareStatement("select * from member");
-		rs = pstmt.executeQuery();
-		// MemberDto dto = null;
-		// null이 아닌 ArrayList의 인스턴스로 초기화 -> NullPointerException 방지
-		List<MemberDto> list = new ArrayList<>(); // List 초기화
-		if (rs != null) {
-			while (rs.next()) {
-				MemberDto dto = new MemberDto(); // 객체를 반복적으로 생성
-				dto.setUsername(rs.getString("username"));
-				dto.setPassword(rs.getString("password"));
-				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));
-				list.add(dto); // 리스트에 회원정보 추가
-			}
-		}
-		freeConnection(pstmt, rs);
-		// System.out.println(list);
-		return list;
+		return new ArrayList<MemberDto>();
 	}
 
 	@Override
-	public MemberDto select(String username) throws Exception {
-		pstmt = conn.prepareStatement("select * from member where username=?");
+	public MemberDto select(String username, String password) throws Exception {
+		pstmt = conn.prepareStatement("select * from member where username=?, password=?");
 		pstmt.setString(1, username);
+		pstmt.setString(2, password);
 		rs = pstmt.executeQuery();
 		MemberDto dto = null;
-
 		if (rs != null) {
-			if (rs.next()) {
-				dto = new MemberDto();
-				dto.setUsername(username);
-				dto.setPassword(rs.getString("password"));
-				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));
-			}
+			rs.next();
+			dto = new MemberDto();
+			dto.setId(rs.getInt("id"));
+			dto.setUsername(rs.getString("username"));
+			dto.setPassword(rs.getString("password"));
 		}
+
 		freeConnection(pstmt, rs);
 		return dto;
 	}
 
 	@Override
 	public boolean update(String username, String password, String email, Integer phone) throws Exception {
-		pstmt = conn.prepareStatement("update member set password=?, email=?, phone=? where username=?");
-		pstmt.setString(1, password);
-		pstmt.setString(2, email);
-		pstmt.setInt(3, phone);
-		pstmt.setString(4, username);
-		int result = pstmt.executeUpdate();
-		freeConnection(pstmt);
-		return result > 0;
+		return false;
 	}
 
 	@Override
@@ -100,5 +75,4 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 		freeConnection(pstmt);
 		return result > 0;
 	}
-
 }

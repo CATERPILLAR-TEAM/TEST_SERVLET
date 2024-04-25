@@ -4,5 +4,5 @@ public interface MemberService {
 
 	boolean deleteMember(int id) throws Exception;
 
-	boolean login(String username, String password);
+	boolean login(String username, String password) throws Exception;
 }
