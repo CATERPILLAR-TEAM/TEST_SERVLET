@@ -1,32 +1,32 @@
 package com.example.app.domain.common.dto;
 
 public class SessionDto {
-	private String id;
-	private String member_id;
+	private int id;
+	private int member_id;
 
 	public SessionDto() {
 		super();
 	}
 
-	public SessionDto(String id, String member_id) {
+	public SessionDto(int id, int member_id) {
 		super();
 		this.id = id;
 		this.member_id = member_id;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getMember_id() {
+	public int getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(String member_id) {
+	public void setMember_id(int member_id) {
 		this.member_id = member_id;
 	}
 
