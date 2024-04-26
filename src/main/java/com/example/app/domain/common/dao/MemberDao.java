@@ -9,7 +9,7 @@ public interface MemberDao {
 
 	boolean insert(MemberDto dto) throws Exception;
 
-	MemberDto select(String username) throws Exception;
+	MemberDto select(String username, String password) throws Exception;
 
 	boolean update(String username, String password, String email, Integer phone) throws Exception;
 
