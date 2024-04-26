@@ -9,7 +9,7 @@ import com.example.app.domain.common.service.MemberService;
 import com.example.app.domain.common.service.MemberServiceImpl;
 
 public class MemberLogoutController implements SubController {
-	
+
 	private MemberService memberService;
 	private ConnectionPool connectionPool;
 
@@ -30,7 +30,7 @@ public class MemberLogoutController implements SubController {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

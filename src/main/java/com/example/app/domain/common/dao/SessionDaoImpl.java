@@ -38,7 +38,7 @@ public class SessionDaoImpl extends CommonDao implements SessionDao {
 
 	@Override
 	public boolean insert(MemberDto memberDto) throws Exception {
-		pstmt = conn.prepareStatement("insert into session values(0, ?)");
+		pstmt = conn.prepareStatement("insert into session values(null, ?)");
 		int memberId = memberDto.getId();
 		pstmt.setInt(1, memberId);
 		int result = pstmt.executeUpdate();
