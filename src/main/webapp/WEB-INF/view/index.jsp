@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>index</div>
-	<div>인덱스 페이지</div>
+	<h2>INDEX</h2>
 </body>
+<script>
+    var sessionId = '<%= session.getAttribute("session_id") %>';
+
+    localStorage.setItem("session_id", sessionId);
+</script>
+
 </html>
