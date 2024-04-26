@@ -1,7 +1,6 @@
 package com.example.app.controller.reserv;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +38,7 @@ public class ReservListController implements SubController {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("ReservListController's execute() invoke");
 		
+		String keyword = request.getParameter("keyword");
 		
 		
 			String method = request.getMethod();
@@ -61,12 +61,31 @@ public class ReservListController implements SubController {
 				return;
 			}
 			
+			//3
+			Integer Id = Integer.parseInt(request.getParameter("userId"));
+			 ReservDto reservDto = null;
+			try {
+				reservDto = reservService.getReservation(Id);
+			
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			
 			
 			
 			//4
-			request.setAttribute("userId", method)
+			request.setAttribute("userId", reservDto);
 	
-
+			try {
+				request.getRequestDispatcher("/WEB-INF/view/reservation/list.jsp").forward(request,response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			
