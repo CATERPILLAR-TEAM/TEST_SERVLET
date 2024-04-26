@@ -1,7 +1,5 @@
 package com.example.app.controller.member;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,52 +14,55 @@ public class MemberLoginController implements SubController {
 	private ConnectionPool connectionPool;
 
 	public MemberLoginController() {
+
 		try {
+
 			memberService = MemberServiceImpl.getInstance();
 			connectionPool = ConnectionPool.getInstance();
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("MemberLoginController's execute() invoke");
+		// TODO Auto-generated method stub
 
 		try {
-			// GET
 			String method = request.getMethod();
 			if (method.contains("GET")) {
-				request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
+				request.getRequestDispatcher("WEB-INF/view/member/login.jsp");
 				return;
 			}
 
-			// POST
+			// 1 parameter
 			if (method.contains("POST")) {
-				// 1 parameter
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
+
 				// 2 validation
 				if (!isValid()) {
-
 					return;
 				}
+
 				// 3 service
 				memberService.login(username, password);
+
+				// 4 view
+
 			}
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			try {
-				connectionPool.txRollBack();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 		}
-
 	}
 
 	private boolean isValid() {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 }

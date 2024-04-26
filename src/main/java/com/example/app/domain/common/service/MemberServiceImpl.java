@@ -69,8 +69,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean register(MemberDto memberDto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		connectionPool.txStart();
+		boolean isSuccess = dao.insert(memberDto);
+		connectionPool.txCommit();
+		return isSuccess;
 
+	}
 }
