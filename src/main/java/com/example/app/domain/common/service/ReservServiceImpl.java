@@ -1,5 +1,7 @@
 package com.example.app.domain.common.service;
 
+import java.util.List;
+
 import com.example.app.domain.common.dao.ConnectionPool;
 import com.example.app.domain.common.dao.ReservDao;
 import com.example.app.domain.common.dao.ReservDaoImpl;
@@ -31,7 +33,20 @@ public class ReservServiceImpl implements ReservService{
 			connectionPool.txCommit();			//05-01 Day TX
 				
 				return result;
-	} 
+	}
 
+	
+
+	@Override
+	public ReservDto getReservation(int userId) throws Exception {
+		
+		ReservDto dto = dao.Select(userId);
+		
+		return dto;
+	}
+
+	
+
+	
 	
 }

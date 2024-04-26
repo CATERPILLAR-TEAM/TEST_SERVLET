@@ -3,6 +3,7 @@ package com.example.app.domain.common.dao;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.app.domain.common.dto.ReservDto;
 
@@ -20,17 +21,27 @@ public class ReservDaoImpl extends CommonDao implements ReservDao{
 
 	@Override
 	public boolean Insert(ReservDto dto) throws Exception {
-		pstmt = conn.prepareStatement("insert into book values(?,?,?,?,?)");
+		System.out.println(dto.toString());
+		pstmt = conn.prepareStatement("insert into reservation values(?,?,?,?,?)");
 		pstmt.setInt(1, dto.getRoom_info_id());
 		pstmt.setInt(2, dto.getUser_id());
 		pstmt.setBoolean(3, dto.isReservation_type());
-		pstmt.setTimestamp(4, Timestamp.valueOf(dto.getCheckIn()));
-		pstmt.setTimestamp(5, Timestamp.valueOf(dto.getCheckOut()));
+		pstmt.setDate(4, java.sql.Date.valueOf(dto.getCheckIn().toLocalDate()));
+		pstmt.setDate(5, java.sql.Date.valueOf(dto.getCheckOut().toLocalDate()));
+		//pstmt.setTimestamp(4, Timestamp.valueOf(dto.getCheckIn()));
+		//pstmt.setTimestamp(5, Timestamp.valueOf(dto.getCheckOut()));
+		
 		int result = pstmt.executeUpdate();
 		
 		freeConnection(pstmt);
 		return result>0;
 	}
+	@Override
+	public ReservDto Select(int userId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 	
 	

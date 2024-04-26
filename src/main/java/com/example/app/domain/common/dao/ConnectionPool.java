@@ -11,9 +11,9 @@ public class ConnectionPool {
 
 	//05-03 application.properties
 	
-	protected String url ="jdbc:mysql://localhost:3306/stayconnect";
-	protected String id = "root";
-	protected String pw = "1234";
+	protected String url ="jdbc:mysql://koonlx.iptime.org:3306/stayconnect";
+	protected String id = "princess";
+	protected String pw = "princess";
 	
 //	protected String url = CommonProperties.DBURL;
 //	protected String id  = CommonProperties.DBID;

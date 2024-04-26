@@ -52,6 +52,7 @@ public class FrontController extends HttpServlet{
 		System.out.println("FrontController's service() invoke.."+uri);
 		
 		SubController controller =  map.get(uri);
+		
 		if(controller==null) {
 			throw new ServletException("해당 페이지는 존재하지 않습니다..");
 		}
