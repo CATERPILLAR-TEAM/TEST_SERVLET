@@ -2,12 +2,15 @@ package com.example.app.domain.common.service;
 
 import com.example.app.domain.common.dao.MemberDao;
 import com.example.app.domain.common.dao.MemberDaoImpl;
+import com.example.app.domain.common.dao.SessionDao;
+import com.example.app.domain.common.dao.SessionDaoImpl;
 import com.example.app.domain.common.dao.common.ConnectionPool;
 import com.example.app.domain.common.dto.MemberDto;
 
 public class MemberServiceImpl implements MemberService {
 
-	private MemberDao dao;
+	private MemberDao memberDao;
+	private SessionDao sessionDao;
 	private ConnectionPool connectionPool;
 
 	private static MemberService instance;
@@ -20,14 +23,15 @@ public class MemberServiceImpl implements MemberService {
 
 	private MemberServiceImpl() throws Exception {
 
-		dao = MemberDaoImpl.getInstance();
+		memberDao = MemberDaoImpl.getInstance();
+		sessionDao = SessionDaoImpl.getInstance();
 		this.connectionPool = ConnectionPool.getInstance();
 	}
 
 	@Override
 	public boolean deleteMember(int id) throws Exception {
 		connectionPool.txStart();
-		dao.delete(id);
+		memberDao.delete(id);
 		connectionPool.txCommit();
 		return true;
 	}
@@ -35,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean register(MemberDto memberDto) throws Exception {
 		connectionPool.txStart();
-		boolean isSuccess = dao.insert(memberDto);
+		boolean isSuccess = memberDao.insert(memberDto);
 		connectionPool.txCommit();
 		return isSuccess;
 
@@ -44,12 +48,23 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean login(String username, String password) throws Exception {
 
-		// session에 해당 member가 존재하는가?
-		dao.select(username, password);
+		connectionPool.txStart();
 		// member table에 해당 member가 존재하는가?
 		// 해당 member의 password는 일치한가?
+		MemberDto memberDto = memberDao.select(username, password);
+		System.out.println(memberDto);
+		if (memberDto == null)
+			return false;
+		// session에 해당 member가 존재하는가?
+		boolean isExists = sessionDao.exists(memberDto);
+		if (isExists) {
+			return false;
+		}
 		// session에 member 저장!!
-		return false;
+		boolean isSuccess = sessionDao.insert(memberDto);
+
+		connectionPool.txCommit();
+		return isSuccess;
 	}
 
 }

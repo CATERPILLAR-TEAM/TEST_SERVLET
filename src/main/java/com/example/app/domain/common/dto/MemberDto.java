@@ -1,6 +1,7 @@
 package com.example.app.domain.common.dto;
 
 public class MemberDto {
+	private int id;
 	private String realname;
 	private String birth;
 	private boolean gender;
@@ -9,14 +10,15 @@ public class MemberDto {
 	private String username;
 	private String password;
 	private String confrimPassword;
-	
+
 	public MemberDto() {
 		super();
 	}
 
-	public MemberDto(String realname, String birth, boolean gender, String phone, String email, String username,
+	public MemberDto(int id, String realname, String birth, boolean gender, String phone, String email, String username,
 			String password, String confrimPassword) {
 		super();
+		this.id = id;
 		this.realname = realname;
 		this.birth = birth;
 		this.gender = gender;
@@ -25,6 +27,14 @@ public class MemberDto {
 		this.username = username;
 		this.password = password;
 		this.confrimPassword = confrimPassword;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getRealname() {
@@ -93,10 +103,9 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [realname=" + realname + ", birth=" + birth + ", gender=" + gender + ", phone=" + phone
-				+ ", email=" + email + ", username=" + username + ", password=" + password + ", confrimPassword="
-				+ confrimPassword + "]";
+		return "MemberDto [id=" + id + "realname=" + realname + ", birth=" + birth + ", gender=" + gender + ", phone="
+				+ phone + ", email=" + email + ", username=" + username + ", password=" + password
+				+ ", confrimPassword=" + confrimPassword + "]";
 	}
-	
-	
+
 }

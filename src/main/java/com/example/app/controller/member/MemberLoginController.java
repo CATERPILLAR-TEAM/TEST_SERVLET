@@ -34,12 +34,12 @@ public class MemberLoginController implements SubController {
 		try {
 			String method = request.getMethod();
 			if (method.contains("GET")) {
-				request.getRequestDispatcher("WEB-INF/view/member/login.jsp");
+				request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
 				return;
 			}
 
-			// 1 parameter
 			if (method.contains("POST")) {
+				// 1 parameter
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
 
@@ -49,9 +49,14 @@ public class MemberLoginController implements SubController {
 				}
 
 				// 3 service
-				memberService.login(username, password);
+				boolean isSuccess = memberService.login(username, password);
 
 				// 4 view
+				if (isSuccess) {
+					response.sendRedirect(request.getContextPath() + "/");
+				} else {
+					System.err.println("ERROR!!!");
+				}
 
 			}
 		} catch (Exception e) {
