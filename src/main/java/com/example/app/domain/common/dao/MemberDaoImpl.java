@@ -48,14 +48,14 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 			while (rs.next()) {
 				MemberDto dto = new MemberDto(); // 객체를 반복적으로 생성
 				dto.setUsername(rs.getString("username"));
-				dto.setPassword(rs.getString("password"));
+				dto.setRealname(rs.getString("realname"));
 				dto.setEmail(rs.getString("email"));
 				dto.setPhone(rs.getString("phone"));
 				list.add(dto); // 리스트에 회원정보 추가
 			}
 		}
 		freeConnection(pstmt, rs);
-		// System.out.println(list);
+		 System.out.println(list);
 		return list;
 	}
 
@@ -80,11 +80,11 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 	}
 
 	@Override
-	public boolean update(String username, String password, String email, Integer phone) throws Exception {
+	public boolean update(String username, String password, String email, String phone) throws Exception {
 		pstmt = conn.prepareStatement("update member set password=?, email=?, phone=? where username=?");
 		pstmt.setString(1, password);
 		pstmt.setString(2, email);
-		pstmt.setInt(3, phone);
+		pstmt.setString(3, phone);
 		pstmt.setString(4, username);
 		int result = pstmt.executeUpdate();
 		freeConnection(pstmt);
@@ -100,4 +100,23 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 		return result > 0;
 	}
 
+	@Override
+	public MemberDto selectMember(String username) throws Exception {
+		pstmt = conn.prepareStatement("select * from member where username=?");
+		pstmt.setString(1, username);
+		rs = pstmt.executeQuery();
+		MemberDto dto = null;
+
+		if (rs != null) {
+			if (rs.next()) {
+				dto = new MemberDto();
+				dto.setUsername(rs.getString("username"));
+				dto.setPassword(rs.getString("password"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+			}
+		}
+		freeConnection(pstmt, rs);
+		return dto;
+	}
 }

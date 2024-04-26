@@ -26,7 +26,7 @@ public class MemberRegisterController implements SubController {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("MemberInsertController's execute() invoke ");
+		System.out.println("MemberRegisterController's execute() invoke ");
 		try {
 
 			String method = request.getMethod();
@@ -49,9 +49,9 @@ public class MemberRegisterController implements SubController {
 
 				// 2 유효성
 				if (!isValid(realname, birth, gender, phone, email, username, password, confrimPassword)) {
-
+					
 				} else {
-
+					
 				}
 
 				// 3 서비스
@@ -61,13 +61,13 @@ public class MemberRegisterController implements SubController {
 				if (!isSuccess) {
 					System.err.println("ERROR!!!!!!!!!!");
 				} else {
-					// 4 뷰
-					response.sendRedirect(request.getContextPath() + "/member/login");
+				// 4 뷰
+//				response.sendRedirect(request.getContextPath() + "/member/login");
+				request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
 				}
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
