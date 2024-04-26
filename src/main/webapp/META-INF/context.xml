@@ -18,23 +18,6 @@
               maxActive="10"
               maxIdle="2"
               maxWait="5000" />
-    <!--  
-    	HIKARI CONNECTION POOL
-    -->
-    <!-- 
-	<Resource name="jdbc/HikariDataSource"
-          auth="Container"
-          type="javax.sql.DataSource"
-          factory="com.zaxxer.hikari.HikariJNDIFactory"
-          jdbcUrl="jdbc:mysql://localhost:3306/bookdb"
-          driverClassName="com.mysql.cj.jdbc.Driver"
-          username="root"
-          password="1234"
-          maximumPoolSize="10"
-          connectionTimeout="30000"
-          idleTimeout="600000"
-          maxLifetime="1800000"
-    />   
-     -->         
+
 
 </Context>

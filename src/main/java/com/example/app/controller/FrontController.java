@@ -6,10 +6,14 @@ import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.example.app.controller.reservation.ReservAddController;
+import com.example.app.controller.reservation.ReservDeleteController;
+import com.example.app.controller.reservation.ReservListController;
+import com.example.app.controller.reservation.ReservUpdateController;
 
 
 public class FrontController extends HttpServlet{
@@ -19,18 +23,20 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("FrontController's init() invoke..");
-		
-		
+
 		map = new HashMap();
-		
+
 		String path = config.getServletContext().getContextPath();
 		// '/'
-		map.put(path+"/", new HomeController());
+		map.put(path + "/", new HomeController());
+
+		// user
 		
-		//user
-		
-		
-		//lend
+		// reservation
+		map.put(path + "/reserv/list", new ReservListController());
+		map.put(path + "/reserv/add", new ReservAddController());
+		map.put(path + "/reserv/delete", new ReservDeleteController());
+		map.put(path + "/reserv/update", new ReservUpdateController());
 		
 	}
 	
