@@ -1,51 +1,108 @@
 package com.example.app.controller.reservation;
 
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.app.controller.SubController;
-import com.example.app.domain.common.dao.common.ConnectionPool;
-import com.example.app.domain.common.dto.ReservationDto;
-import com.example.app.domain.common.service.ReservationService;
-import com.example.app.domain.common.service.ReservationServiceImpl;
-
+import com.example.app.domain.common.dao.ConnectionPool;
+import com.example.app.domain.common.dto.ReservDto;
+import com.example.app.domain.common.service.ReservService;
+import com.example.app.domain.common.service.ReservServiceImpl;
 
 public class ReservListController implements SubController {
 
-	private ReservationService reservService;
+	private ReservService reservService;
 	private ConnectionPool connectionPool;
-	private ReservationDto reservationDto;
 	
+	
+	//생성자-싱글톤
 	public ReservListController() {
+		
 		try {
-			reservService = ReservationServiceImpl.getInstance();
+			reservService = ReservServiceImpl.getInstance();
+			connectionPool = ConnectionPool.getInstance();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
+	
+	
 	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("ReservationListController execute : ");
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("ReservListController's execute() invoke");
 		
-//		Map<String, Object> returnValue = null;
-//		
-//		List<ReservationDto> list = (List<ReservationDto>) returnValue.get("list");
-//		ReservationDto reservationDto = (ReservationDto)returnValue.get("reservationDto");
-//		
-//		req.setAttribute("list", list);
-		req.setAttribute("reservationDto", reservationDto);
+		String keyword = request.getParameter("keyword");
 		
-		try {
-			req.getRequestDispatcher("/WEB-INF/view/reservation/list.jsp").forward(req, resp);
-			return ;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-
+		
+			String method = request.getMethod();
+			if(method.contains("GET"))
+				try {
+					request.getRequestDispatcher("/WEB-INF/view/reservation/list.jsp").forward(request, response);
+					System.out.println("list 페이지 보여줄게");
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			
+			String userId = request.getParameter("userId");
+			
+			if(!Valid(userId)) {
+				return;
+			}
+			
+			//3
+			Integer Id = Integer.parseInt(request.getParameter("userId"));
+			 ReservDto reservDto = null;
+			try {
+				reservDto = reservService.getReservation(Id);
+			
+			} catch (Exception e) {
+			
+				e.printStackTrace();
+			}
+			
+			
+			
+			//4
+			request.setAttribute("userId", reservDto);
+	
+			try {
+				request.getRequestDispatcher("/WEB-INF/view/reservation/list.jsp").forward(request,response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+			
+			
+			
+			
 	}
+
+
+
+	private boolean Valid(String userId) {
+		
+		return true;
+	}
+	
+	
 
 }
