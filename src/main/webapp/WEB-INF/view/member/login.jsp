@@ -9,7 +9,7 @@
 <body>
 	<h2>로그인</h2>
     <form action="${pageContext.request.contextPath}/member/login" method="post"> <!-- 'register'는 이 폼 데이터를 처리할 서블릿의 URL로 설정하세요 -->
-        
+
         <label for="username">사용자 이름:</label>
         <input type="text" id="username" name="username" required><br>
 

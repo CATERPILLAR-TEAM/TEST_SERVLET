@@ -1,5 +1,7 @@
 package com.example.app.domain.common.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.example.app.domain.common.dao.MemberDao;
@@ -78,6 +80,31 @@ public class MemberServiceImpl implements MemberService {
 	public boolean logout(int sessionId) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<MemberDto> selectAll() throws Exception {
+		connectionPool.txStart();
+		List<MemberDto> list = dao.selectAll();
+		connectionPool.txCommit();
+		return list;
+	}
+
+	@Override
+	public MemberDto selectMember(String username) throws Exception {
+		connectionPool.txStart();
+		MemberDto dto = dao.selectMember(username);
+		connectionPool.txCommit();
+		return dto;
+	}
+
+	@Override
+	public boolean update(String username, String password, String email, String phone) throws Exception {
+		connectionPool.txStart();
+		dao.update(username, password, email, phone);
+
+		connectionPool.txCommit();
+		return true;
 	}
 
 }

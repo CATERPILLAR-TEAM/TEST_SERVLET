@@ -11,9 +11,12 @@ public interface MemberDao {
 
 	MemberDto select(String username, String password) throws Exception;
 
-	boolean update(String username, String password, String email, Integer phone) throws Exception;
+	boolean update(String username, String password, String email, String phone) throws Exception;
 
 	boolean delete(int id) throws Exception;
 
 	List<MemberDto> selectAll() throws SQLException;
+
+	MemberDto selectMember(String username) throws Exception;
+
 }

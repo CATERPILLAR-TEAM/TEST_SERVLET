@@ -26,8 +26,21 @@ public class MemberDto {
 		this.email = email;
 		this.username = username;
 		this.password = password;
+
 		this.confrimPassword = confrimPassword;
 	}
+
+	public MemberDto(String username, String password, String email, String phone) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+	}
+
+	public MemberDto(String username) {
+		super();
+		this.username = username;
 
 	public int getId() {
 		return id;
