@@ -38,6 +38,7 @@ public class MemberRegisterController implements SubController {
 			if (method.contains("POST")) {
 
 				// 1 파라미터
+				int id = 0;
 				String realname = request.getParameter("realname");
 				String birth = request.getParameter("birth");
 				boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
@@ -55,7 +56,7 @@ public class MemberRegisterController implements SubController {
 				}
 
 				// 3 서비스
-				MemberDto memberDto = new MemberDto(realname, birth, gender, phone, email, username, password,
+				MemberDto memberDto = new MemberDto(id, realname, birth, gender, phone, email, username, password,
 						confrimPassword);
 				boolean isSuccess = memberService.register(memberDto);
 				if (!isSuccess) {

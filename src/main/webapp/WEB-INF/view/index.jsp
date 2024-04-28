@@ -7,11 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>index</div>
-	<div>ÀÎµ¦½º ÆäÀÌÁö</div>
-	<a href="${pageContext.request.contextPath}/member/register">È¸¿ø°¡ÀÔ</a>
-	<a href="${pageContext.request.contextPath}/member/selectAll">admin ·Î±×ÀÎÇß´ÙÄ¡°í È¸¿ø¸ñ·Ï</a>
-	<a href="${pageContext.request.contextPath}/member/select">admin ·Î±×ÀÎÇß´ÙÄ¡°í È¸¿ø»ó¼¼</a>
-	<a href="${pageContext.request.contextPath}/member/update">admin ·Î±×ÀÎÇß´ÙÄ¡°í È¸¿ø¼öÁ¤</a>
+	<h2>INDEX</h2>
+	<div>ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</div>
+	<a href="${pageContext.request.contextPath}/member/register">È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+	<a href="${pageContext.request.contextPath}/member/selectAll">admin ï¿½Î±ï¿½ï¿½ï¿½ï¿½ß´ï¿½Ä¡ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+	<a href="${pageContext.request.contextPath}/member/select">admin ï¿½Î±ï¿½ï¿½ï¿½ï¿½ß´ï¿½Ä¡ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½</a>
+	<a href="${pageContext.request.contextPath}/member/update">admin ï¿½Î±ï¿½ï¿½ï¿½ï¿½ß´ï¿½Ä¡ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
 </body>
+<script>
+    var sessionId = '<%= session.getAttribute("session_id") %>';
+
+    localStorage.setItem("session_id", sessionId);
+</script>
+
 </html>

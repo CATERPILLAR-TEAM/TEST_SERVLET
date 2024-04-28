@@ -2,6 +2,7 @@ package com.example.app.controller.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.example.app.controller.SubController;
 import com.example.app.domain.common.dao.common.ConnectionPool;
@@ -34,14 +35,15 @@ public class MemberLoginController implements SubController {
 		try {
 			String method = request.getMethod();
 			if (method.contains("GET")) {
-				request.getRequestDispatcher("WEB-INF/view/member/login.jsp");
+				request.getRequestDispatcher("/WEB-INF/view/member/login.jsp").forward(request, response);
 				return;
 			}
 
-			// 1 parameter
 			if (method.contains("POST")) {
+				// 1 parameter
 				String username = request.getParameter("username");
 				String password = request.getParameter("password");
+				HttpSession session = request.getSession();
 
 				// 2 validation
 				if (!isValid()) {
@@ -49,19 +51,23 @@ public class MemberLoginController implements SubController {
 				}
 
 				// 3 service
-				memberService.login(username, password);
+				boolean isSuccess = memberService.login(username, password, session);
 
 				// 4 view
+				if (isSuccess) {
+
+					response.sendRedirect(request.getContextPath() + "/");
+				} else {
+					System.err.println("ERROR!!!");
+				}
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	private boolean isValid() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

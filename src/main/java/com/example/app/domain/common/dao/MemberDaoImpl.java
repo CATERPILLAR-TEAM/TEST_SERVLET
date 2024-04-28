@@ -61,18 +61,16 @@ public class MemberDaoImpl extends CommonDao implements MemberDao {
 
 	@Override
 	public MemberDto select(String username, String password) throws Exception {
-		pstmt = conn.prepareStatement("select * from member where username=?");
+		pstmt = conn.prepareStatement("select * from member where username=? and password=?");
 		pstmt.setString(1, username);
+		pstmt.setString(2, password);
 		rs = pstmt.executeQuery();
 		MemberDto dto = null;
 
 		if (rs != null) {
 			if (rs.next()) {
 				dto = new MemberDto();
-				dto.setUsername(username);
-				dto.setPassword(rs.getString("password"));
-				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));
+				dto.setId(rs.getInt("id"));
 			}
 		}
 		freeConnection(pstmt, rs);
