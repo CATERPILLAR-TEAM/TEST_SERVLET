@@ -26,7 +26,6 @@ public class MemberDto {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-
 		this.confrimPassword = confrimPassword;
 	}
 
@@ -41,6 +40,7 @@ public class MemberDto {
 	public MemberDto(String username) {
 		super();
 		this.username = username;
+	}
 
 	public int getId() {
 		return id;

@@ -85,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberDto> selectAll() throws Exception {
 		connectionPool.txStart();
-		List<MemberDto> list = dao.selectAll();
+		List<MemberDto> list = memberDao.selectAll();
 		connectionPool.txCommit();
 		return list;
 	}
@@ -93,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDto selectMember(String username) throws Exception {
 		connectionPool.txStart();
-		MemberDto dto = dao.selectMember(username);
+		MemberDto dto = memberDao.selectMember(username);
 		connectionPool.txCommit();
 		return dto;
 	}
@@ -101,10 +101,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean update(String username, String password, String email, String phone) throws Exception {
 		connectionPool.txStart();
-		dao.update(username, password, email, phone);
+		memberDao.update(username, password, email, phone);
 
 		connectionPool.txCommit();
 		return true;
 	}
-
 }

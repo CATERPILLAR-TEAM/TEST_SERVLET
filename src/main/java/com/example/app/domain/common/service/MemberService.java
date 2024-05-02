@@ -12,8 +12,6 @@ public interface MemberService {
 
 	boolean register(MemberDto memberDto) throws Exception;
 
-	boolean login(String username, String password) throws Exception;
-
 	List<MemberDto> selectAll() throws Exception;
 
 	MemberDto selectMember(String username) throws Exception;
