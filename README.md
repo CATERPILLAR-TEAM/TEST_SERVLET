@@ -20,8 +20,8 @@ PLANS
  |JSP/SERVLET|2024/04/24 ~ 2024/05/03|-|-|
  |SPRING STS3|-|-|-|
  |SPRING BOOT|-|-|-|
- 
- 
+
+
 
 MEMBERERS
 --- 
@@ -58,18 +58,18 @@ END POINT DOC
 ---
 |URI|REQUEST METHOD|REQUEST PARAMETER TYPE|RESPONSE VALUE TYPE|DESCRIPTION|
 |---|---|---|---|---|
-|/member/delete|GET/POST|---|---|---|
-|/member/register|GET/POST|---|---|---|
-|/member/update|GET/POST|---|---|---|
-|/member/select|GET/POST|---|---|---|
-|/member/selectAll|GET/POST|---|---|---|
-|/member/login|GET/POST|---|---|---|
-|/member/logout|GET/POST|---|---|---|
+|/member/delete|GET/POST|id|boolean|member 탈퇴|
+|/member/register|GET/POST|MemberDto|boolean|member 등록|
+|/member/update|GET/POST|username, password, email, phone|boolean|member 정보 수정|
+|/member/select|GET/POST|username|MemberDto|(관리자)member 상세 조회|
+|/member/selectAll|POST|---|List<MemberDto>|(관리자)member 목록 조회|
+|/member/login|GET/POST|username, password, session|boolean|member 로그인|
+|/member/logout|GET|---|boolean|member 로그아웃|
 |---|---|---|---|---|
-|/reservation/add|GET/POST|---|---|---|
-|/reservation/list|GET/POST|---|---|---|
-|/reservation/update|GET/POST|---|---|---|
-|/reservation/delete|GET/POST|---|---|---|
+|/reservation/add|GET/POST|ReservDto|boolean|숙소 예약|
+|/reservation/list|GET/POST|userId|ReservDto|member가 예약한 숙소 목록 조회|
+|/reservation/update|GET/POST|reservationDto|boolean|member가 예약한 정보 수정|
+|/reservation/delete|GET/POST|user_id|boolean|member가 예약한 숙소 취소|
 |---|---|---|---|---|
 
 DEPENDENCIES LIST
@@ -86,6 +86,7 @@ DEPENDENCIES LIST
 
 ERD[stayconnect]
 ---
+![image](https://github.com/CATERPILLAR-TEAM/TEST_SERVLET/assets/155939946/fbf64d7c-94e0-4700-b3b9-79e5172d0a4d)
 
 
 FILE TREES[JSP/SERVLET]
@@ -233,4 +234,3 @@ TEST_SERVLET
                     └── jsp
                         └── link.jsp
 ```
-
