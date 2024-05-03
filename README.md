@@ -32,6 +32,25 @@ MEMBERERS
 |이재형|BN| member - 로그인 / 로그아웃 / 회원탈퇴 |---|
 |조은파|BN| member - 회원등록 / 회원목록 |---|
 
+
+시작가이드
+---
+#### REQUIREMENTS
+---
+- 
+#### INSTALLATION
+---
+```
+```
+##### BAEKEND
+---
+```
+```
+##### FRONTEND
+---
+```
+```
+
 SKILLS
 ---
 
@@ -83,6 +102,12 @@ DEPENDENCIES LIST
 |DB|-|-|-|-|-|
 |DEVOPS|-|-|-|-|-|
 
+
+주요기능
+---
+-
+-
+-
 
 ERD[stayconnect]
 ---
