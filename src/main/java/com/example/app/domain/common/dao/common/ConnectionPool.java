@@ -6,35 +6,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class ConnectionPool {
 
-	//05-03 application.properties
-	
-	protected String url ="jdbc:mysql://koonlx.iptime.org:3306/stayconnect";
+	// 05-03 application.properties
+
+	protected String url = "jdbc:mysql://koonlx.iptime.org:3306/testservlet";
 	protected String id = "princess";
 	protected String pw = "princess";
-	
+
 //	protected String url = CommonProperties.DBURL;
 //	protected String id  = CommonProperties.DBID;
 //	protected String pw  = CommonProperties.DBPW;
-	
-	protected Connection conn =null;
+
+	protected Connection conn = null;
 	protected PreparedStatement pstmt = null;
 	protected ResultSet rs = null;
-	
-	
-	
-	private static ConnectionPool instance ;
+
+	private static ConnectionPool instance;
+
 	public static ConnectionPool getInstance() throws Exception {
-		if(instance==null)
-			instance=new ConnectionPool();
+		if (instance == null)
+			instance = new ConnectionPool();
 		return instance;
 	}
-	
-	private ConnectionPool() throws Exception{
+
+	private ConnectionPool() throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		conn = DriverManager.getConnection(url,id,pw);
+		conn = DriverManager.getConnection(url, id, pw);
 		System.out.println("ConnectionPool's DB Connected...");
 	}
 
@@ -42,21 +40,20 @@ public class ConnectionPool {
 		// TODO Auto-generated method stub
 		return conn;
 	}
-	
-	
-	
-	//05-01 TX
+
+	// 05-01 TX
 	public void txStart() throws SQLException {
-		conn.setAutoCommit(false);	
+		conn.setAutoCommit(false);
 	}
-	//05-01 TX
+
+	// 05-01 TX
 	public void txCommit() throws SQLException {
 		conn.commit();
 	}
-	//05-01 TX
+
+	// 05-01 TX
 	public void txRollBack() throws SQLException {
 		conn.rollback();
 	}
-	
-	
+
 }

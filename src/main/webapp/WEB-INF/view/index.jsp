@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>INDEX</h2>
-	<div>�ε��� ������</div>
-	<a href="${pageContext.request.contextPath}/member/register">ȸ������</a>
-	<a href="${pageContext.request.contextPath}/member/selectAll">admin �α����ߴ�ġ�� ȸ�����</a>
-	<a href="${pageContext.request.contextPath}/member/select">admin �α����ߴ�ġ�� ȸ����</a>
-	<a href="${pageContext.request.contextPath}/member/update">admin �α����ߴ�ġ�� ȸ������</a>
+	<h1>INDEX</h1>
+	<h2>MEMBER</h2>
+	<div><a href="${pageContext.request.contextPath}/member/register">회원가입</a></div>
+	<div><a href="${pageContext.request.contextPath}/member/selectAll">회원목록조회</a></div>
+	<div><a href="${pageContext.request.contextPath}/member/select">회원상세정보</a></div>
+	<div><a href="${pageContext.request.contextPath}/member/update">회원정보수정</a></div>
+	<div><a href="${pageContext.request.contextPath}/member/login">로그인</a></div>
+	<div><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></div>
+	<h2>RSERVATION</h2>
+	<div><a href="${pageContext.request.contextPath}/reservation/select">예약조회</a></div>
+	<div><a href="${pageContext.request.contextPath}/reservation/selectAll">전체예약조회</a></div>
+	<div><a href="${pageContext.request.contextPath}/reservation/update">예약수정</a></div>
+	<div><a href="${pageContext.request.contextPath}/reservation/delete">예약삭제</a></div>
+	<div><a href="${pageContext.request.contextPath}/reservation/insert">예약추가</a></div>
 </body>
-<script>
-    var sessionId = '<%= session.getAttribute("session_id") %>';
-
-    localStorage.setItem("session_id", sessionId);
-</script>
-
 </html>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div>회원 목록 페이지</div>
-	<form action="${pageContext.request.contextPath}/member/selectAll">          
+	<form action="${pageContext.request.contextPath}/member/selectAll" method="post">      
             <section class="show-block">
             	<table class=table>
             		<tr>

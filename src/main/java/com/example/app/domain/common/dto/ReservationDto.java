@@ -1,63 +1,72 @@
 package com.example.app.domain.common.dto;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
+import java.sql.Timestamp;
 
 public class ReservationDto {
 	private int room_info_id;
 	private int user_id;
-
 	private boolean reservation_type;
-	private LocalDateTime check_in;
-	private LocalDateTime check_out;
-	
-	
-	
+	private Timestamp checkIn;
+	private Timestamp checkOut;
+
 	public ReservationDto() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
-	public ReservationDto(Integer room_id, Integer userid, Boolean reservtype, LocalDateTime checkin,
-			LocalDateTime checkout) {
-		// TODO Auto-generated constructor stub
+
+	public ReservationDto(int room_info_id, int user_id, boolean reservation_type, Timestamp checkIn,
+			Timestamp checkOut) {
+		super();
+		this.room_info_id = room_info_id;
+		this.user_id = user_id;
+		this.reservation_type = reservation_type;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
 	}
-	// getter setter
+
 	public int getRoom_info_id() {
 		return room_info_id;
 	}
+
 	public void setRoom_info_id(int room_info_id) {
 		this.room_info_id = room_info_id;
 	}
+
 	public int getUser_id() {
 		return user_id;
 	}
+
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
+
 	public boolean isReservation_type() {
 		return reservation_type;
 	}
+
 	public void setReservation_type(boolean reservation_type) {
 		this.reservation_type = reservation_type;
 	}
-	public LocalDateTime getCheck_in() {
-		return check_in;
+
+	public Timestamp getCheckIn() {
+		return checkIn;
 	}
-	public void setCheck_in(LocalDateTime check_in) {
-		this.check_in = check_in;
+
+	public void setCheckIn(Timestamp checkIn) {
+		this.checkIn = checkIn;
 	}
-	public LocalDateTime getCheck_out() {
-		return check_out;
+
+	public Timestamp getCheckOut() {
+		return checkOut;
 	}
-	public void setCheck_out(LocalDateTime check_out) {
-		this.check_out = check_out;
+
+	public void setCheckOut(Timestamp checkOut) {
+		this.checkOut = checkOut;
 	}
-	
-	// toString
+
 	@Override
 	public String toString() {
 		return "ReservationDto [room_info_id=" + room_info_id + ", user_id=" + user_id + ", reservation_type="
-				+ reservation_type + ", check_in=" + check_in + ", check_out=" + check_out + "]";
+				+ reservation_type + ", checkIn=" + checkIn + ", checkOut=" + checkOut + "]";
 	}
-	
-	
+
 }
