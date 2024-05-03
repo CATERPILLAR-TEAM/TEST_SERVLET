@@ -116,146 +116,75 @@ ERD[stayconnect]
 
 FILE TREES[JSP/SERVLET]
 --- 
-```
-TEST_SERVLET
-├── build
-│   └── classes
-│       └── com
-│           └── example
-│               └── app
-│                   ├── controller
-│                   │   ├── FrontController.class
-│                   │   ├── HomeController.class
-│                   │   ├── SubController.class
-│                   │   ├── member
-│                   │   │   ├── MemberDeleteController.class
-│                   │   │   ├── MemberLoginController.class
-│                   │   │   ├── MemberLogoutController.class
-│                   │   │   ├── MemberRegisterController.class
-│                   │   │   ├── MemberSelectAllController.class
-│                   │   │   ├── MemberSelectController.class
-│                   │   │   └── MemberUpdateController.class
-│                   │   └── reservation
-│                   │       ├── ReservAddController.class
-│                   │       ├── ReservDeleteController.class
-│                   │       ├── ReservListController.class
-│                   │       └── ReservUpdateController.class
-│                   ├── domain
-│                   │   └── common
-│                   │       ├── dao
-│                   │       │   ├── CommonDao.class
-│                   │       │   ├── ConnectionPool.class
-│                   │       │   ├── MemberDao.class
-│                   │       │   ├── MemberDaoImpl.class
-│                   │       │   ├── ReservDao.class
-│                   │       │   ├── ReservDaoImpl.class
-│                   │       │   ├── ReservationDao.class
-│                   │       │   ├── ReservationDaoImpl.class
-│                   │       │   ├── SessionDao.class
-│                   │       │   ├── SessionDaoImpl.class
-│                   │       │   └── common
-│                   │       │       ├── CommonDao.class
-│                   │       │       └── ConnectionPool.class
-│                   │       ├── dto
-│                   │       │   ├── Criteria.class
-│                   │       │   ├── MemberDto.class
-│                   │       │   ├── ReservDto.class
-│                   │       │   ├── ReservationDto.class
-│                   │       │   └── SessionDto.class
-│                   │       └── service
-│                   │           ├── MemberService.class
-│                   │           ├── MemberServiceImpl.class
-│                   │           ├── ReservService.class
-│                   │           ├── ReservServiceImpl.class
-│                   │           ├── ReservationService.class
-│                   │           └── ReservationServiceImpl.class
-│                   └── filter
-│                       └── UTF_8_EncodingFilter.class
+```TEST_SERVLET
+├── README.md
 └── src
     └── main
         ├── java
-        │   └── com
-        │       └── example
-        │           └── app
-        │               ├── controller
-        │               │   ├── FrontController.java
-        │               │   ├── HomeController.java
-        │               │   ├── SubController.java
-        │               │   ├── member
-        │               │   │   ├── MemberDeleteController.java
-        │               │   │   ├── MemberLoginController.java
-        │               │   │   ├── MemberLogoutController.java
-        │               │   │   ├── MemberRegisterController.java
-        │               │   │   ├── MemberSelectAllController.java
-        │               │   │   ├── MemberSelectController.java
-        │               │   │   └── MemberUpdateController.java
-        │               │   └── reservation
-        │               │       ├── ReservAddController.java
-        │               │       ├── ReservDeleteController.java
-        │               │       ├── ReservListController.java
-        │               │       └── ReservUpdateController.java
-        │               ├── domain
-        │               │   └── common
-        │               │       ├── dao
-        │               │       │   ├── CommonDao.java
-        │               │       │   ├── ConnectionPool.java
-        │               │       │   ├── MemberDao.java
-        │               │       │   ├── MemberDaoImpl.java
-        │               │       │   ├── ReservDao.java
-        │               │       │   ├── ReservDaoImpl.java
-        │               │       │   ├── ReservationDao.java
-        │               │       │   ├── ReservationDaoImpl.java
-        │               │       │   ├── SessionDao.java
-        │               │       │   ├── SessionDaoImpl.java
-        │               │       │   └── common
-        │               │       │       ├── CommonDao.java
-        │               │       │       └── ConnectionPool.java
-        │               │       ├── dto
-        │               │       │   ├── Criteria.java
-        │               │       │   ├── MemberDto.java
-        │               │       │   ├── ReservDto.java
-        │               │       │   ├── ReservationDto.java
-        │               │       │   └── SessionDto.java
-        │               │       └── service
-        │               │           ├── MemberService.java
-        │               │           ├── MemberServiceImpl.java
-        │               │           ├── ReservService.java
-        │               │           ├── ReservServiceImpl.java
-        │               │           ├── ReservationService.java
-        │               │           └── ReservationServiceImpl.java
-        │               └── filter
-        │                   └── UTF_8_EncodingFilter.java
+        │   └── com
+        │       └── example
+        │           └── app
+        │               ├── controller
+        │               │   ├── FrontController.java
+        │               │   └── Sub
+        │               │       ├── MemberController.java
+        │               │       ├── ReservationController.java
+        │               │       └── SubController.java
+        │               ├── domain
+        │               │   └── common
+        │               │       ├── dao
+        │               │       │   ├── MemberDao.java
+        │               │       │   ├── MemberDaoImpl.java
+        │               │       │   ├── ReservationDao.java
+        │               │       │   ├── ReservationDaoImpl.java
+        │               │       │   ├── SessionDao.java
+        │               │       │   ├── SessionDaoImpl.java
+        │               │       │   └── common
+        │               │       │       ├── CommonDao.java
+        │               │       │       └── ConnectionPool.java
+        │               │       ├── dto
+        │               │       │   ├── Criteria.java
+        │               │       │   ├── MemberDto.java
+        │               │       │   ├── ReservationDto.java
+        │               │       │   └── SessionDto.java
+        │               │       └── service
+        │               │           ├── MemberService.java
+        │               │           ├── MemberServiceImpl.java
+        │               │           ├── ReservationService.java
+        │               │           └── ReservationServiceImpl.java
+        │               └── filter
+        │                   └── UTF_8_EncodingFilter.java
         └── webapp
             ├── META-INF
-            │   ├── MANIFEST.MF
-            │   └── context.xml
+            │   ├── MANIFEST.MF
+            │   └── context.xml
             ├── WEB-INF
-            │   ├── lib
-            │   │   ├── HikariCP-5.1.0.jar
-            │   │   ├── commons-logging-1.3.1.jar
-            │   │   ├── jstl-1.2.jar
-            │   │   ├── logback-classic-1.5.3.jar
-            │   │   ├── mysql-connector-j-8.3.0.jar
-            │   │   └── slf4j-api-2.0.12.jar
-            │   ├── view
-            │   │   ├── index.jsp
-            │   │   ├── member
-            │   │   │   ├── delete.jsp
-            │   │   │   ├── list.jsp
-            │   │   │   ├── login.jsp
-            │   │   │   ├── read.jsp
-            │   │   │   └── register.jsp
-            │   │   └── reservation
-            │   │       ├── add.jsp
-            │   │       ├── delete.jsp
-            │   │       ├── list.jsp
-            │   │       └── update.jsp
-            │   └── web.xml
+            │   ├── lib
+            │   │   ├── HikariCP-5.1.0.jar
+            │   │   ├── commons-logging-1.3.1.jar
+            │   │   ├── jstl-1.2.jar
+            │   │   ├── logback-classic-1.5.3.jar
+            │   │   ├── mysql-connector-j-8.3.0.jar
+            │   │   └── slf4j-api-2.0.12.jar
+            │   ├── view
+            │   │   ├── index.jsp
+            │   │   ├── member
+            │   │   │   ├── delete.jsp
+            │   │   │   ├── list.jsp
+            │   │   │   ├── login.jsp
+            │   │   │   ├── read.jsp
+            │   │   │   └── register.jsp
+            │   │   └── reservation
+            │   │       ├── delete.jsp
+            │   │       ├── insert.jsp
+            │   │       ├── list.jsp
+            │   │       └── update.jsp
+            │   └── web.xml
             └── resources
                 └── static
                     ├── css
-                    │   ├── common.css
-                    │   └── list.css
+                    │   ├── common.css
+                    │   └── list.css
                     └── jsp
                         └── link.jsp
 ```
